@@ -7,6 +7,9 @@ import json
 # Pip
 from kcu import request
 
+# Local
+from .parse_mode import ParseMode
+
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
 
@@ -33,12 +36,13 @@ class Telegram:
     def send(
         self,
         message: str,
-        chat_id: Optional[str] = None
+        chat_id: Optional[str] = None,
+        parse_mode: Optional[ParseMode] = None
     ) -> bool:
         chat_id = chat_id or self.chat_id
 
         if not chat_id:
-            if debug:
+            if self.debug:
                 print('ERROR: No chat id')
 
             return False
@@ -48,11 +52,11 @@ class Telegram:
             params={
                 'chat_id': chat_id,
                 'text': message,
-                'parse_mode': 'HTML'
+                'parse_mode': parse_mode.value or 'HTML'
             }
         )
 
-        return res is not None and res.status_code == 200
+        return res and res.status_code == 200
 
     @classmethod
     def send_cls(
@@ -60,9 +64,10 @@ class Telegram:
         token: str,
         message: str,
         chat_id: str,
+        parse_mode: Optional[ParseMode] = None,
         debug: bool = False
     ) -> bool:
-        return cls(token, chat_id, debug).send(message)
+        return cls(token, chat_id, debug).send(message, parse_mode=parse_mode)
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #

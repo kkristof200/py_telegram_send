@@ -9,14 +9,16 @@ else:
 
 setuptools.setup(
     name="ktg",
-    version="0.0.2",
+    version="0.0.5",
     author="Kristof",
     description="send telegram message",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/kkristof200/py_telegram_send",
     packages=setuptools.find_packages(),
-    install_requires=["kcu"],
+    install_requires=[
+        'kcu>=0.0.61'
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
