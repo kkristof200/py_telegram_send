@@ -9,7 +9,7 @@ else:
 
 setuptools.setup(
     name="ktg",
-    version="0.0.5",
+    version="0.0.6",
     author="Kristof",
     description="send telegram message",
     long_description=long_description,

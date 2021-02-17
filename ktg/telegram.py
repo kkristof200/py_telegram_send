@@ -52,7 +52,7 @@ class Telegram:
             params={
                 'chat_id': chat_id,
                 'text': message,
-                'parse_mode': parse_mode.value or 'HTML'
+                'parse_mode': (parse_mode or ParseMode.HTML).value
             }
         )
 
